@@ -140,7 +140,7 @@ Projekt jest udostępniany na licencji MIT. Szczegółowe informacje znajdziesz 
 
 ## 📞 Kontakt
 
-Mateusz Betlej - [mateusz.betlej4@gmail.com](mailto:mateusz.betlej4@gmail.com)
+Mateusz Betlej - [mateuszbetlej4@gmail.com](mailto:mateuszbetlej4@gmail.com)
 
 Link do projektu: [https://github.com/mateuszBetlej4/DropBizPlan](https://github.com/mateuszBetlej4/DropBizPlan)
 
