@@ -11,48 +11,56 @@ Zaprojektowany z myślą o przedsiębiorcach rozpoczynających przygodę z drops
 ## 🚀 Główne funkcje
 
 ### 📝 Zarządzanie zadaniami
+
 - Interaktywne checklisty dla każdego etapu rozwoju biznesu
 - Śledzenie postępu realizacji zadań
 - Powiadomienia o zbliżających się terminach
 - Możliwość dostosowania list zadań do własnych potrzeb
 
 ### 💾 Zarządzanie zasobami
+
 - Centralne repozytorium dla dokumentów biznesowych
 - Organizacja grafik (loga, banery reklamowe, zdjęcia produktów)
 - Zarządzanie treściami marketingowymi
 - Szablony dokumentów (regulaminy, polityka prywatności)
 
 ### 📊 Analiza finansowa
+
 - Kalkulator marż i zysków
 - Planowanie i śledzenie budżetu
 - Prognozowanie przepływów pieniężnych
 - Analiza kosztów i przychodów
 
 ### 📦 Zarządzanie produktami
+
 - Baza danych produktów z integracją z dostawcami
 - Śledzenie stanów magazynowych
 - Zarządzanie cenami i promocjami
 - Kategoryzacja produktów
 
 ### 👨‍👩‍👧‍👦 Zarządzanie klientami
+
 - Baza danych klientów
 - Historia zamówień klienta
 - Segmentacja klientów
 - Narzędzia do komunikacji z klientami
 
 ### 🛒 Zarządzanie zamówieniami
+
 - Śledzenie statusu zamówień
 - Automatyczne powiadomienia o zmianach statusu
 - Historia zamówień
 - Zarządzanie zwrotami i reklamacjami
 
 ### 📈 Analityka i raporty
+
 - Analiza trendów sprzedażowych
 - Raport bestsellerów
 - Analiza sezonowości
 - Wskaźniki efektywności biznesu
 
 ### 🔍 Analiza konkurencji
+
 - Monitorowanie cen konkurencji
 - Analiza ofert konkurencyjnych
 - Identyfikacja nisz rynkowych
@@ -61,6 +69,7 @@ Zaprojektowany z myślą o przedsiębiorcach rozpoczynających przygodę z drops
 ## 💻 Technologia
 
 DropBizPlan to aplikacja webowa zbudowana przy użyciu:
+
 - Frontend: React.js, TypeScript, Material UI
 - Backend: Node.js, Express.js
 - Baza danych: MongoDB
@@ -118,11 +127,133 @@ DropBizPlan/
 
 ## 🔄 Plan rozwoju
 
-- **Wersja 1.0**: Podstawowe funkcje zarządzania zadaniami i zasobami
-- **Wersja 1.5**: Integracja z dostawcami i zarządzanie produktami
-- **Wersja 2.0**: Zarządzanie zamówieniami i klientami
+### Faza I: Podstawowe funkcje
+
+- **Wersja 0.1**: Konfiguracja projektu i środowiska
+
+  - Konfiguracja projektu React/TypeScript i Node.js/Express
+  - Podstawowy układ strony i nawigacja
+  - Integracja Material UI
+  - Konfiguracja środowiska deweloperskiego
+
+- **Wersja 0.2**: Zarządzanie zadaniami - podstawy
+
+  - Prosty komponent listy zadań (dodawanie/usuwanie)
+  - Podstawowy interfejs użytkownika dla checklisty
+  - Lokalne przechowywanie danych
+
+- **Wersja 0.3**: Zarządzanie zasobami - podstawy
+
+  - Prosta struktura do przechowywania i wyświetlania dokumentów
+  - Podstawowa funkcja przesyłania plików
+
+- **Wersja 1.0**: Kompletny moduł zarządzania zadaniami i zasobami
+  - Integracja z MongoDB
+  - Pełne API RESTful dla zadań i zasobów
+  - Bardziej zaawansowany interfejs użytkownika
+  - Powiadomienia o terminach zadań
+
+### Faza II: Zarządzanie produktami
+
+- **Wersja 1.1**: Podstawowe zarządzanie produktami
+
+  - Model danych produktów
+  - Interfejs do dodawania i edycji produktów
+  - Podstawowa kategoryzacja
+
+- **Wersja 1.2**: Integracja z dostawcami - podstawy
+
+  - Model danych dostawców
+  - Połączenie produktów z dostawcami
+  - Podstawowe śledzenie stanów magazynowych
+
+- **Wersja 1.3**: Rozszerzone zarządzanie produktami
+
+  - Masowy import produktów
+  - Zaawansowana kategoryzacja
+  - Zarządzanie cenami i promocjami
+
+- **Wersja 1.5**: Kompletny moduł zarządzania produktami
+  - Pełna integracja z API dostawców
+  - Automatyczne aktualizacje stanów magazynowych
+  - Zaawansowane zarządzanie cenami i promocjami
+
+### Faza III: Zarządzanie klientami i zamówieniami
+
+- **Wersja 1.6**: Podstawowe zarządzanie klientami
+
+  - Model danych klientów
+  - Interfejs do zarządzania klientami
+  - Podstawowa segmentacja klientów
+
+- **Wersja 1.7**: Podstawowe zarządzanie zamówieniami
+
+  - Model danych zamówień
+  - Śledzenie statusów zamówień
+  - Podstawowa historia zamówień
+
+- **Wersja 1.8**: Rozszerzone funkcje klientów i zamówień
+
+  - Komunikacja z klientami
+  - Zarządzanie zwrotami i reklamacjami
+  - Szczegółowa historia zamówień
+
+- **Wersja 2.0**: Kompletny moduł zarządzania klientami i zamówieniami
+  - Zaawansowana segmentacja klientów
+  - Automatyczne powiadomienia o statusie zamówień
+  - Pełne funkcje zarządzania zwrotami i reklamacjami
+
+### Faza IV: Analityka i zaawansowane funkcje
+
+- **Wersja 2.1**: Podstawowe narzędzia analityczne
+
+  - Dashboardy sprzedażowe
+  - Podstawowe raporty
+  - Analiza bestsellerów
+
+- **Wersja 2.2**: Analiza finansowa
+
+  - Kalkulator marż i zysków
+  - Śledzenie budżetu
+  - Podstawowe prognozy finansowe
+
+- **Wersja 2.3**: Analiza konkurencji
+
+  - Monitorowanie cen konkurencji
+  - Analiza ofert konkurencyjnych
+  - Identyfikacja nisz rynkowych
+
 - **Wersja 2.5**: Rozbudowane narzędzia analityczne
-- **Wersja 3.0**: Integracja z platformami e-commerce i systemami płatności
+  - Zaawansowane prognozy finansowe
+  - Analiza trendów i sezonowości
+  - Pełne wskaźniki efektywności biznesu
+  - Eksport raportów
+
+### Faza V: Integracje i optymalizacja
+
+- **Wersja 2.6**: Integracja z platformami e-commerce - podstawy
+
+  - Integracja z WooCommerce/Shopify
+  - Synchronizacja produktów
+  - Podstawowa synchronizacja zamówień
+
+- **Wersja 2.7**: Integracja z systemami płatności
+
+  - Podłączenie popularnych systemów płatności
+  - Śledzenie płatności
+  - Podstawowa automatyzacja finansowa
+
+- **Wersja 2.8**: Rozszerzone integracje
+
+  - Integracja z większą liczbą platform e-commerce
+  - Zaawansowana synchronizacja produktów i zamówień
+  - Automatyzacja procesów
+
+- **Wersja 3.0**: Pełna optymalizacja i integracja
+  - Pełna automatyzacja procesów biznesowych
+  - Optymalizacja wydajności
+  - Zaawansowane integracje z zewnętrznymi systemami
+  - API dla zewnętrznych deweloperów
 
 ## 🤝 Współpraca
 
