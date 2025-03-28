@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, memo } from 'react';
 import { 
   Box, 
   Button, 
@@ -20,8 +20,7 @@ import {
 import { 
   fileToBase64, 
   addResource, 
-  getResourceType,
-  ResourceType
+  getResourceType
 } from '../../utils/localStorage/resourceStorage';
 
 interface ResourceUploadProps {
@@ -40,7 +39,7 @@ const ResourceUpload: React.FC<ResourceUploadProps> = ({ onUploadComplete }) => 
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
     
     if (e.target.files && e.target.files[0]) {
@@ -57,20 +56,20 @@ const ResourceUpload: React.FC<ResourceUploadProps> = ({ onUploadComplete }) => 
         setName(selectedFile.name);
       }
     }
-  };
+  }, [name]);
   
-  const handleAddTag = () => {
+  const handleAddTag = useCallback(() => {
     if (currentTag.trim() && !tags.includes(currentTag.trim())) {
       setTags([...tags, currentTag.trim()]);
       setCurrentTag('');
     }
-  };
+  }, [currentTag, tags]);
   
-  const handleRemoveTag = (tagToRemove: string) => {
+  const handleRemoveTag = useCallback((tagToRemove: string) => {
     setTags(tags.filter(tag => tag !== tagToRemove));
-  };
+  }, [tags]);
   
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!file || !name.trim()) {
@@ -111,7 +110,7 @@ const ResourceUpload: React.FC<ResourceUploadProps> = ({ onUploadComplete }) => 
     } finally {
       setUploading(false);
     }
-  };
+  }, [file, name, description, tags, onUploadComplete]);
   
   return (
     <Paper elevation={2} sx={{ p: 3, mb: 3 }}>
@@ -237,4 +236,4 @@ const ResourceUpload: React.FC<ResourceUploadProps> = ({ onUploadComplete }) => 
   );
 };
 
-export default ResourceUpload; 
+export default memo(ResourceUpload); 

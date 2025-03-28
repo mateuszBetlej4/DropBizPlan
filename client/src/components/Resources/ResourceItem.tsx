@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { 
   Card, 
   CardContent, 
@@ -149,4 +149,5 @@ const ResourceItem: React.FC<ResourceItemProps> = ({ resource, onDelete, onView 
   );
 };
 
-export default ResourceItem; 
+// Eksport z zastosowaniem memo dla optymalizacji renderowania
+export default memo(ResourceItem); 

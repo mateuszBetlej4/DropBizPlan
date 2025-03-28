@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { 
   Box, 
   Typography, 
-  Grid, 
   Paper, 
   TextField, 
   InputAdornment,
@@ -40,7 +39,6 @@ enum ResourceFilter {
 
 const ResourceList: React.FC = () => {
   const [resources, setResources] = useState<Resource[]>([]);
-  const [filteredResources, setFilteredResources] = useState<Resource[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentFilter, setCurrentFilter] = useState<ResourceFilter>(ResourceFilter.ALL);
   const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
@@ -50,18 +48,18 @@ const ResourceList: React.FC = () => {
   const [resourceToDelete, setResourceToDelete] = useState<string | null>(null);
   
   // Pobieranie zasobów z localStorage
-  const loadResources = () => {
+  const loadResources = useCallback(() => {
     const allResources = getAllResources();
     setResources(allResources);
-  };
+  }, []);
   
   // Pobierz zasoby przy montowaniu komponentu
   useEffect(() => {
     loadResources();
-  }, []);
+  }, [loadResources]);
   
   // Filtrowanie zasobów przy zmianie filtra lub query
-  useEffect(() => {
+  const filteredResources = useMemo(() => {
     let result = [...resources];
     
     // Filtrowanie po typie
@@ -93,36 +91,36 @@ const ResourceList: React.FC = () => {
     // Sortowanie po dacie (najnowsze pierwsze)
     result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     
-    setFilteredResources(result);
+    return result;
   }, [resources, currentFilter, searchQuery]);
   
   // Obsługa usuwania zasobu
-  const handleDeleteResource = (resourceId: string) => {
+  const handleDeleteResource = useCallback((resourceId: string) => {
     setResourceToDelete(resourceId);
     setDeleteConfirmOpen(true);
-  };
+  }, []);
   
   // Potwierdzenie usuwania zasobu
-  const confirmDelete = () => {
+  const confirmDelete = useCallback(() => {
     if (resourceToDelete) {
       deleteResource(resourceToDelete);
       loadResources();
       setDeleteConfirmOpen(false);
       setResourceToDelete(null);
     }
-  };
+  }, [resourceToDelete, loadResources]);
   
   // Obsługa podglądu zasobu
-  const handleViewResource = (resource: Resource) => {
+  const handleViewResource = useCallback((resource: Resource) => {
     setSelectedResource(resource);
     setPreviewOpen(true);
-  };
+  }, []);
   
   // Obsługa zakończenia przesyłania
-  const handleUploadComplete = () => {
+  const handleUploadComplete = useCallback(() => {
     loadResources();
     setUploadOpen(false);
-  };
+  }, [loadResources]);
   
   return (
     <Paper elevation={3} sx={{ p: 2 }}>

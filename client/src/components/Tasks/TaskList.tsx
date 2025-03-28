@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { 
   List, 
   Paper, 
@@ -30,66 +30,72 @@ const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [currentFilter, setCurrentFilter] = useState<TaskFilter>(TaskFilter.ALL);
   
-  // Pobranie zadań z localStorage przy montowaniu komponentu
-  useEffect(() => {
+  // Funkcja ładująca zadania - zoptymalizowana przez useCallback
+  const loadTasks = useCallback(() => {
     setTasks(getAllTasks());
   }, []);
   
-  // Dodawanie nowego zadania
-  const handleAddTask = (newTask: Omit<Task, 'id' | 'createdAt'>) => {
-    const task = addTask(newTask);
-    setTasks(prev => [...prev, task]);
-  };
+  // Pobieranie zadań przy montowaniu komponentu
+  useEffect(() => {
+    loadTasks();
+  }, [loadTasks]);
   
-  // Usuwanie zadania
-  const handleDeleteTask = (taskId: string) => {
-    const success = deleteTask(taskId);
-    if (success) {
-      setTasks(prev => prev.filter(task => task.id !== taskId));
+  // Przetwarzanie zadań z uwzględnieniem filtrów i sortowania
+  const filteredAndSortedTasks = useMemo(() => {
+    let result = [...tasks];
+    
+    // Filtrowanie zadań
+    if (currentFilter === TaskFilter.COMPLETED) {
+      result = result.filter(task => task.completed);
+    } else if (currentFilter === TaskFilter.ACTIVE) {
+      result = result.filter(task => !task.completed);
     }
-  };
+    
+    // Sortowanie - najpierw nieukończone, potem według daty
+    result.sort((a, b) => {
+      // Najpierw nieukończone zadania
+      if (a.completed !== b.completed) {
+        return a.completed ? 1 : -1;
+      }
+      
+      // Następnie sortujemy po dacie terminu (jeśli istnieje)
+      if (a.dueDate && b.dueDate) {
+        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      }
+      
+      // Zadania bez terminu na końcu
+      if (a.dueDate && !b.dueDate) return -1;
+      if (!a.dueDate && b.dueDate) return 1;
+      
+      // Na końcu sortujemy po dacie utworzenia (od najnowszych)
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
+    
+    return result;
+  }, [tasks, currentFilter]);
   
-  // Zmiana statusu zadania (ukończone/nieukończone)
-  const handleToggleComplete = (taskId: string) => {
+  // Funkcje obsługi zadań z wykorzystaniem useCallback
+  const handleToggleComplete = useCallback((taskId: string) => {
     const updatedTask = toggleTaskCompletion(taskId);
     if (updatedTask) {
-      setTasks(prev => 
-        prev.map(task => task.id === taskId ? updatedTask : task)
-      );
+      loadTasks();
     }
-  };
+  }, [loadTasks]);
   
-  // Filtrowanie zadań na podstawie wybranej zakładki
-  const filteredTasks = tasks.filter(task => {
-    switch (currentFilter) {
-      case TaskFilter.ACTIVE:
-        return !task.completed;
-      case TaskFilter.COMPLETED:
-        return task.completed;
-      default:
-        return true;
+  const handleDeleteTask = useCallback((taskId: string) => {
+    const success = deleteTask(taskId);
+    if (success) {
+      loadTasks();
     }
-  });
+  }, [loadTasks]);
   
-  // Sortowanie zadań - najpierw nieukończone, potem według daty
-  const sortedTasks = [...filteredTasks].sort((a, b) => {
-    // Najpierw nieukończone zadania
-    if (a.completed !== b.completed) {
-      return a.completed ? 1 : -1;
+  const handleAddTask = useCallback((taskData: Omit<Task, 'id' | 'createdAt'>) => {
+    const newTask = addTask(taskData);
+    
+    if (newTask) {
+      loadTasks();
     }
-    
-    // Następnie sortujemy po dacie terminu (jeśli istnieje)
-    if (a.dueDate && b.dueDate) {
-      return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
-    }
-    
-    // Zadania bez terminu na końcu
-    if (a.dueDate && !b.dueDate) return -1;
-    if (!a.dueDate && b.dueDate) return 1;
-    
-    // Na końcu sortujemy po dacie utworzenia (od najnowszych)
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-  });
+  }, [loadTasks]);
   
   return (
     <Paper elevation={3} sx={{ p: 2 }}>
@@ -116,9 +122,9 @@ const TaskList: React.FC = () => {
       
       <Divider sx={{ mb: 2 }} />
       
-      {sortedTasks.length > 0 ? (
+      {filteredAndSortedTasks.length > 0 ? (
         <List>
-          {sortedTasks.map(task => (
+          {filteredAndSortedTasks.map(task => (
             <TaskItem
               key={task.id}
               task={task}

@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# DropBizPlan - Aplikacja kliencka (Frontend)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Ten katalog zawiera kod źródłowy części klienckiej aplikacji DropBizPlan, zbudowanej przy użyciu React, TypeScript i Material UI.
 
-## Available Scripts
+## 🚀 Aktualna wersja: 0.3.1
 
-In the project directory, you can run:
+W tej wersji wprowadziliśmy:
+
+- Optymalizację wydajności komponentów (React.memo, useCallback, useMemo)
+- Naprawę problemów z dostępnością (aria-hidden, struktura nagłówków)
+- Usunięcie wszystkich ostrzeżeń kompilatora
+- Konfigurację CRACO do nadpisania ustawień webpack bez ejectowania
+
+## 🛠️ Dostępne skrypty
+
+W katalogu projektu możesz uruchomić:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Uruchamia aplikację w trybie deweloperskim.\
+Otwórz [http://localhost:3000](http://localhost:3000), aby zobaczyć aplikację w przeglądarce.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Strona automatycznie przeładuje się, gdy wprowadzisz zmiany.\
+Zobaczysz również błędy lint w konsoli.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Uruchamia testy w interaktywnym trybie obserwującym.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Buduje aplikację do produkcji w folderze `build`.\
+Optymalizuje kod React w trybie produkcyjnym, co zapewnia najlepszą wydajność.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔧 Używane technologie
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- React 19
+- TypeScript
+- Material UI 7
+- CRACO (Create React App Configuration Override)
+- LocalStorage do przechowywania danych
 
-### `npm run eject`
+## 📁 Struktura projektu
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+src/
+├── components/         # Komponenty React
+│   ├── Layout/         # Komponenty układu strony
+│   ├── Tasks/          # Komponenty zarządzania zadaniami
+│   └── Resources/      # Komponenty zarządzania zasobami
+├── utils/              # Narzędzia pomocnicze
+│   └── localStorage/   # Funkcje do obsługi lokalnego przechowywania danych
+└── App.tsx             # Główny komponent aplikacji
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔄 Zarządzanie danymi
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Aplikacja obecnie używa localStorage przeglądarki do przechowywania danych. W przyszłych wersjach zostanie zintegrowana z backendem bazującym na Node.js i MongoDB.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🔜 Następne kroki
 
-## Learn More
+Planowana wersja 0.3.2 będzie obejmować:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Implementację systemu kontroli wersji dla aplikacji
+- Automatyzację procesu wydawania nowych wersji
+- Dokumentację techniczną API i komponentów
+- Testy jednostkowe i integracyjne

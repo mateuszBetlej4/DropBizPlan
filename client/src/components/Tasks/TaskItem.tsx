@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { 
   ListItem, 
   ListItemButton,
@@ -18,19 +18,22 @@ interface TaskItemProps {
   onDelete: (taskId: string) => void;
 }
 
+// Funkcja formatująca datę
+const formatDate = (dateString: string | undefined): string => {
+  if (!dateString) return 'Brak terminu';
+  const date = new Date(dateString);
+  return date.toLocaleString('pl-PL', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
+
 const TaskItem: React.FC<TaskItemProps> = ({ 
   task, 
   onToggleComplete, 
   onDelete 
 }) => {
-  // Formatowanie daty w czytelnym formacie
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return '';
-    
-    const date = new Date(dateString);
-    return date.toLocaleDateString();
-  };
-
   return (
     <ListItem
       secondaryAction={
@@ -97,4 +100,5 @@ const TaskItem: React.FC<TaskItemProps> = ({
   );
 };
 
-export default TaskItem; 
+// Eksport z zastosowaniem memo dla optymalizacji renderowania
+export default memo(TaskItem); 

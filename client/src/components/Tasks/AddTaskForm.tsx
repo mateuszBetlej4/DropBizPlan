@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import { 
   Box, 
   TextField, 
   Button, 
-  Grid,
-  InputAdornment,
-  IconButton,
-  Stack
+  Stack, 
+  InputAdornment, 
+  IconButton 
 } from '@mui/material';
 import { Send as SendIcon, CalendarToday } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -25,7 +24,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({ onAddTask }) => {
   const [dueDate, setDueDate] = useState<Dayjs | null>(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
     
     if (!title.trim()) return;
@@ -42,7 +41,7 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({ onAddTask }) => {
     setDescription('');
     setDueDate(null);
     setShowDatePicker(false);
-  };
+  }, [title, description, dueDate, onAddTask]);
   
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ mb: 3 }}>
@@ -101,4 +100,4 @@ const AddTaskForm: React.FC<AddTaskFormProps> = ({ onAddTask }) => {
   );
 };
 
-export default AddTaskForm; 
+export default memo(AddTaskForm); 

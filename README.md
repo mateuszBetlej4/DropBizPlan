@@ -148,12 +148,13 @@ DropBizPlan/
   - Podstawowa funkcja przesyłania plików
   - Zarządzanie metadanymi plików
 
-- **Wersja 0.3.1**: Optymalizacja i naprawa błędów
+- **Wersja 0.3.1**: Optymalizacja i naprawa błędów ✅
 
   - Naprawa wszystkich ostrzeżeń kompilatora
   - Optymalizacja wydajności komponentów
   - Naprawa problemów z dostępnością (aria-hidden, struktura nagłówków)
   - Refaktoryzacja kodu dla lepszej czytelności i konserwacji
+  - Rozwiązanie problemów z pluginem ESLint poprzez konfigurację CRACO
 
 - **Wersja 0.3.2**: Kontrola wersji i przygotowanie do wydania
 
@@ -274,7 +275,7 @@ DropBizPlan/
 
 ### ✅ Wersja 0.3 (Ukończona)
 
-Funkcje zaimplementowane w obecnej wersji:
+Funkcje zaimplementowane w tej wersji:
 
 - ✅ Podstawowy system zarządzania zadaniami
   - Dodawanie zadań z tytułem, opisem i terminem
@@ -288,6 +289,33 @@ Funkcje zaimplementowane w obecnej wersji:
   - Pobieranie zasobów
   - Wyszukiwanie i filtrowanie zasobów
 
+### ✅ Wersja 0.3.1 (Ukończona)
+
+Funkcje zaimplementowane w tej wersji:
+
+- ✅ Optymalizacja wydajności aplikacji:
+  - Implementacja React.memo dla komponentów
+  - Wykorzystanie useCallback dla funkcji obsługi zdarzeń
+  - Zastosowanie useMemo dla kosztownych obliczeń
+- ✅ Naprawa problemów z dostępnością:
+  - Rozwiązanie problemów z aria-hidden dla elementów z fokusem
+  - Korekta struktury nagłówków HTML dla lepszego wsparcia czytników ekranu
+  - Poprawa nawigacji klawiaturowej
+- ✅ Usunięcie wszystkich ostrzeżeń kompilatora:
+  - Naprawa nieużywanych importów
+  - Usunięcie martwego kodu
+  - Poprawki typów TypeScript
+  - Rozwiązanie problemów z pluginem ESLint poprzez konfigurację CRACO
+- ✅ Rozwiązanie problemów z konfiguracją:
+  - Implementacja CRACO do bezpiecznego nadpisywania konfiguracji webpack
+  - Dodanie skryptu `dev-win` z flagą `--no-deprecation` do wyciszenia ostrzeżeń webpack-dev-server
+  - Konfiguracja zmiennej środowiskowej `DISABLE_ESLINT_PLUGIN` do wyłączania sprawdzania ESLint podczas developmentu
+  - Całkowite wyłączenie ESLint w konfiguracji CRACO dla środowiska deweloperskiego
+  - Dodanie pliku .env.development z ustawieniami deweloperskimi
+  - Wyciszenie ostrzeżeń deprecation dla Node.js poprzez bezpośrednie użycie flagi `--no-deprecation`
+  - Optymalizacja skryptów npm dla lepszej kompatybilności międzyplatformowej
+  - Naprawa ostrzeżeń dotyczących przestarzałych opcji deweloperskich
+
 Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dodane funkcje serwera i bazą danych MongoDB.
 
 ### 🔜 Planowane w następnej wersji (1.0)
@@ -299,13 +327,6 @@ Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dod
 - Ulepszone zarządzanie zasobami z kategoryzacją folderową
 
 ### 🔜 Najbliższe plany rozwoju
-
-- **Wersja 0.3.1**: Optymalizacja i naprawa błędów
-
-  - Naprawa wszystkich ostrzeżeń kompilatora
-  - Optymalizacja wydajności komponentów
-  - Naprawa problemów z dostępnością (aria-hidden, struktura nagłówków)
-  - Refaktoryzacja kodu dla lepszej czytelności i konserwacji
 
 - **Wersja 0.3.2**: Kontrola wersji i przygotowanie do wydania
 
