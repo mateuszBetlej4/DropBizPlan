@@ -129,14 +129,14 @@ DropBizPlan/
 
 ### Faza I: Podstawowe funkcje
 
-- **Wersja 0.1**: Konfiguracja projektu i środowiska
+- **Wersja 0.1**: Konfiguracja projektu i środowiska ✅
 
   - Konfiguracja projektu React/TypeScript i Node.js/Express
   - Podstawowy układ strony i nawigacja
   - Integracja Material UI
   - Konfiguracja środowiska deweloperskiego
 
-- **Wersja 0.2**: Zarządzanie zadaniami - podstawy
+- **Wersja 0.2**: Zarządzanie zadaniami - podstawy ✅
 
   - Prosty komponent listy zadań (dodawanie/usuwanie)
   - Podstawowy interfejs użytkownika dla checklisty
@@ -254,6 +254,26 @@ DropBizPlan/
   - Optymalizacja wydajności
   - Zaawansowane integracje z zewnętrznymi systemami
   - API dla zewnętrznych deweloperów
+
+## 📄 Aktualny status rozwoju
+
+### ✅ Wersja 0.2 (Ukończona)
+
+Funkcje zaimplementowane w obecnej wersji:
+
+- ✅ Podstawowy system zarządzania zadaniami
+- ✅ Możliwość dodawania nowych zadań z tytułem, opisem i terminem wykonania
+- ✅ Oznaczanie zadań jako ukończone/nieukończone
+- ✅ Usuwanie zadań
+- ✅ Filtrowanie zadań (wszystkie, aktywne, ukończone)
+- ✅ Przechowywanie zadań w localStorage
+- ✅ Sortowanie zadań według statusu i daty
+
+### 🔜 Planowane w następnej wersji (0.3)
+
+- Podstawowy system zarządzania zasobami
+- Możliwość przesyłania i organizowania plików
+- Podstawowa kategoryzacja zasobów
 
 ## 🤝 Współpraca
 
