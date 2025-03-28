@@ -4,6 +4,8 @@ import Layout from './components/Layout/Layout';
 import TaskList from './components/Tasks/TaskList';
 import ResourceList from './components/Resources/ResourceList';
 import AccessibilityFixer from './utils/AccessibilityHelper';
+import VersionDisplay from './components/Layout/VersionDisplay';
+import VERSION from './utils/version';
 import './App.css';
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
             Rozpocznij pracę z DropBizPlan
           </Typography>
           <Typography variant="body1">
-            To jest wersja 0.3 aplikacji, która zawiera podstawowy system zarządzania zadaniami i zasobami.
+            To jest wersja <VersionDisplay /> aplikacji ({VERSION.getVersion()}), która zawiera podstawowy system zarządzania zadaniami i zasobami.
             W kolejnych wersjach dodamy więcej funkcji, zgodnie z planem rozwoju.
           </Typography>
         </Paper>

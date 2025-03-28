@@ -1,0 +1,75 @@
+name: Aktualizacja wersji
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'client/src/utils/version.ts'
+      - 'CHANGELOG.md'
+      - '.github/workflows/**'
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalacja zależności
+        run: |
+          npm ci
+          cd client && npm ci && cd ..
+          cd server && npm ci && cd ..
+
+      - name: Konfiguracja użytkownika Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Określenie typu zmiany wersji
+        id: version-type
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+          if [[ $COMMIT_MSG == *"feat:"* || $COMMIT_MSG == *"FEATURE:"* ]]; then
+            echo "version_type=minor" >> $GITHUB_ENV
+          elif [[ $COMMIT_MSG == *"fix:"* || $COMMIT_MSG == *"FIX:"* ]]; then
+            echo "version_type=patch" >> $GITHUB_ENV
+          elif [[ $COMMIT_MSG == *"BREAKING CHANGE:"* || $COMMIT_MSG == *"!:"* ]]; then
+            echo "version_type=major" >> $GITHUB_ENV
+          else
+            echo "version_type=build" >> $GITHUB_ENV
+          fi
+
+      - name: Aktualizacja wersji
+        run: node scripts/update-version.js ${{ env.version_type }}
+
+      - name: Aktualizacja CHANGELOG
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          CHANGELOG=$(cat CHANGELOG.md)
+          CURRENT_VERSION=$(node -e "console.log(require('./client/src/utils/version').default.getVersion())")
+          
+          if [[ "$CHANGELOG" != *"[$CURRENT_VERSION]"* ]]; then
+            COMMIT_MESSAGES=$(git log --pretty=format:"- %s" $(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD | grep -v "chore: aktualizacja wersji")
+            
+            NEW_CHANGELOG="# Changelog\n\nWszystkie istotne zmiany w projekcie będą dokumentowane w tym pliku.\n\nFormat oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\na projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n## [$CURRENT_VERSION] - $DATE\n\n### Dodano\n\n### Zmieniono\n$COMMIT_MESSAGES\n\n"
+            
+            echo -e "$NEW_CHANGELOG$(echo "$CHANGELOG" | tail -n +8)" > CHANGELOG.md
+            git add CHANGELOG.md
+            git commit --amend --no-edit
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }} 

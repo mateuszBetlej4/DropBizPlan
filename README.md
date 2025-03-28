@@ -156,12 +156,14 @@ DropBizPlan/
   - Refaktoryzacja kodu dla lepszej czytelności i konserwacji
   - Rozwiązanie problemów z pluginem ESLint poprzez konfigurację CRACO
 
-- **Wersja 0.3.2**: Kontrola wersji i przygotowanie do wydania
+- **Wersja 0.3.2**: Wizualna kontrola wersji i automatyzacja ✅
 
-  - Implementacja systemu kontroli wersji dla aplikacji
-  - Automatyzacja procesu wydawania nowych wersji
-  - Dokumentacja techniczna API i komponentów
-  - Testy jednostkowe i integracyjne dla kluczowych funkcji
+  - Komponent wyświetlający aktualną wersję aplikacji w interfejsie (stopka i strona główna)
+  - Plik version.ts do centralnego zarządzania informacjami o wersji
+  - Plik CHANGELOG.md do śledzenia zmian między wersjami
+  - Konfiguracja GitHub Actions do automatycznej aktualizacji wersji przy każdym pushu
+  - Skrypty npm (version:patch, version:minor, version:major, version:build) do aktualizacji wersji
+  - Integracja wersjonowania semantycznego (Semantic Versioning)
 
 - **Wersja 1.0**: Kompletny moduł zarządzania zadaniami i zasobami
   - Integracja z MongoDB
@@ -315,6 +317,18 @@ Funkcje zaimplementowane w tej wersji:
   - Wyciszenie ostrzeżeń deprecation dla Node.js poprzez bezpośrednie użycie flagi `--no-deprecation`
   - Optymalizacja skryptów npm dla lepszej kompatybilności międzyplatformowej
   - Naprawa ostrzeżeń dotyczących przestarzałych opcji deweloperskich
+
+### ✅ Wersja 0.3.2 (Ukończona)
+
+Funkcje zaimplementowane w tej wersji:
+
+- ✅ Wizualna kontrola wersji i automatyzacja:
+  - Komponent wyświetlający aktualną wersję aplikacji w interfejsie (stopka i strona główna)
+  - Plik version.ts do centralnego zarządzania informacjami o wersji
+  - Plik CHANGELOG.md do śledzenia zmian między wersjami
+  - Konfiguracja GitHub Actions do automatycznej aktualizacji wersji przy każdym pushu
+  - Skrypty npm (version:patch, version:minor, version:major, version:build) do aktualizacji wersji
+  - Integracja wersjonowania semantycznego (Semantic Versioning)
 
 Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dodane funkcje serwera i bazą danych MongoDB.
 
