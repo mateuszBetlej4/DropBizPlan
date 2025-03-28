@@ -47,7 +47,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" aria-hidden={false}>
         <Toolbar>
           {isMobile && (
             <IconButton

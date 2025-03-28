@@ -142,10 +142,11 @@ DropBizPlan/
   - Podstawowy interfejs użytkownika dla checklisty
   - Lokalne przechowywanie danych
 
-- **Wersja 0.3**: Zarządzanie zasobami - podstawy
+- **Wersja 0.3**: Zarządzanie zasobami - podstawy ✅
 
   - Prosta struktura do przechowywania i wyświetlania dokumentów
   - Podstawowa funkcja przesyłania plików
+  - Zarządzanie metadanymi plików
 
 - **Wersja 1.0**: Kompletny moduł zarządzania zadaniami i zasobami
   - Integracja z MongoDB
@@ -257,23 +258,31 @@ DropBizPlan/
 
 ## 📄 Aktualny status rozwoju
 
-### ✅ Wersja 0.2 (Ukończona)
+### ✅ Wersja 0.3 (Ukończona)
 
 Funkcje zaimplementowane w obecnej wersji:
 
 - ✅ Podstawowy system zarządzania zadaniami
-- ✅ Możliwość dodawania nowych zadań z tytułem, opisem i terminem wykonania
-- ✅ Oznaczanie zadań jako ukończone/nieukończone
-- ✅ Usuwanie zadań
-- ✅ Filtrowanie zadań (wszystkie, aktywne, ukończone)
-- ✅ Przechowywanie zadań w localStorage
-- ✅ Sortowanie zadań według statusu i daty
+  - Dodawanie zadań z tytułem, opisem i terminem
+  - Oznaczanie zadań jako ukończone
+  - Usuwanie zadań
+  - Filtrowanie i sortowanie zadań
+- ✅ Podstawowy system zarządzania zasobami
+  - Przesyłanie plików (dokumenty, obrazy, inne)
+  - Katalogowanie zasobów z metadanymi i tagami
+  - Podgląd plików (zdjęcia, dokumenty PDF)
+  - Pobieranie zasobów
+  - Wyszukiwanie i filtrowanie zasobów
 
-### 🔜 Planowane w następnej wersji (0.3)
+Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dodane funkcje serwera i bazą danych MongoDB.
 
-- Podstawowy system zarządzania zasobami
-- Możliwość przesyłania i organizowania plików
-- Podstawowa kategoryzacja zasobów
+### 🔜 Planowane w następnej wersji (1.0)
+
+- Integracja z bazą danych MongoDB
+- Pełne API RESTful dla zadań i zasobów
+- Udoskonalony interfejs użytkownika
+- Powiadomienia o terminach zadań
+- Ulepszone zarządzanie zasobami z kategoryzacją folderową
 
 ## 🤝 Współpraca
 
