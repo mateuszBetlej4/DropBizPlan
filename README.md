@@ -148,6 +148,20 @@ DropBizPlan/
   - Podstawowa funkcja przesyłania plików
   - Zarządzanie metadanymi plików
 
+- **Wersja 0.3.1**: Optymalizacja i naprawa błędów
+
+  - Naprawa wszystkich ostrzeżeń kompilatora
+  - Optymalizacja wydajności komponentów
+  - Naprawa problemów z dostępnością (aria-hidden, struktura nagłówków)
+  - Refaktoryzacja kodu dla lepszej czytelności i konserwacji
+
+- **Wersja 0.3.2**: Kontrola wersji i przygotowanie do wydania
+
+  - Implementacja systemu kontroli wersji dla aplikacji
+  - Automatyzacja procesu wydawania nowych wersji
+  - Dokumentacja techniczna API i komponentów
+  - Testy jednostkowe i integracyjne dla kluczowych funkcji
+
 - **Wersja 1.0**: Kompletny moduł zarządzania zadaniami i zasobami
   - Integracja z MongoDB
   - Pełne API RESTful dla zadań i zasobów
@@ -283,6 +297,28 @@ Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dod
 - Udoskonalony interfejs użytkownika
 - Powiadomienia o terminach zadań
 - Ulepszone zarządzanie zasobami z kategoryzacją folderową
+
+### 🔜 Najbliższe plany rozwoju
+
+- **Wersja 0.3.1**: Optymalizacja i naprawa błędów
+
+  - Naprawa wszystkich ostrzeżeń kompilatora
+  - Optymalizacja wydajności komponentów
+  - Naprawa problemów z dostępnością (aria-hidden, struktura nagłówków)
+  - Refaktoryzacja kodu dla lepszej czytelności i konserwacji
+
+- **Wersja 0.3.2**: Kontrola wersji i przygotowanie do wydania
+
+  - Implementacja systemu kontroli wersji dla aplikacji
+  - Automatyzacja procesu wydawania nowych wersji
+  - Dokumentacja techniczna API i komponentów
+  - Testy jednostkowe i integracyjne dla kluczowych funkcji
+
+- **Wersja 1.0**: Pełna funkcjonalność i integracja z backendem
+  - Integracja z bazą danych MongoDB
+  - Pełne API RESTful dla zadań i zasobów
+  - Udoskonalony interfejs użytkownika
+  - Powiadomienia o terminach zadań
 
 ## 🤝 Współpraca
 
