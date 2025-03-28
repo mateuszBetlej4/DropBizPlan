@@ -12,7 +12,8 @@ import {
   ListItemText,
   Box,
   useMediaQuery,
-  useTheme
+  useTheme,
+  ListItemButton
 } from '@mui/material';
 import {
   Menu as MenuIcon,
@@ -82,9 +83,11 @@ const Navbar: React.FC = () => {
         >
           <List>
             {menuItems.map((item) => (
-              <ListItem button key={item.text} component="a" href={item.path}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} />
+              <ListItem key={item.text} component="div" disablePadding>
+                <ListItemButton component="a" href={item.path}>
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
+                </ListItemButton>
               </ListItem>
             ))}
           </List>
@@ -94,4 +97,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar; 
+export default Navbar;

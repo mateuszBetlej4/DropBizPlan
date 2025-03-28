@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, Paper, Grid, Card, CardContent, CardHeader } from '@mui/material';
+import { Typography, Box, Paper, Card, CardContent, CardHeader, Stack } from '@mui/material';
 import Layout from './components/Layout/Layout';
 import './App.css';
 
@@ -15,9 +15,9 @@ function App() {
         </Typography>
       </Box>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Card>
+      <Stack spacing={3}>
+        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
+          <Card sx={{ flex: 1 }}>
             <CardHeader title="Zadania" />
             <CardContent>
               <Typography variant="body1">
@@ -25,9 +25,8 @@ function App() {
               </Typography>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
+          
+          <Card sx={{ flex: 1 }}>
             <CardHeader title="Zasoby" />
             <CardContent>
               <Typography variant="body1">
@@ -35,19 +34,18 @@ function App() {
               </Typography>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper sx={{ p: 3, mt: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              Rozpocznij pracę z DropBizPlan
-            </Typography>
-            <Typography variant="body1">
-              To jest wersja 0.1 aplikacji, która zawiera podstawowy układ i nawigację.
-              W kolejnych wersjach dodamy więcej funkcji, zgodnie z planem rozwoju.
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+        </Box>
+        
+        <Paper sx={{ p: 3, mt: 2 }}>
+          <Typography variant="h6" gutterBottom>
+            Rozpocznij pracę z DropBizPlan
+          </Typography>
+          <Typography variant="body1">
+            To jest wersja 0.1 aplikacji, która zawiera podstawowy układ i nawigację.
+            W kolejnych wersjach dodamy więcej funkcji, zgodnie z planem rozwoju.
+          </Typography>
+        </Paper>
+      </Stack>
     </Layout>
   );
 }
