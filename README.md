@@ -165,11 +165,59 @@ DropBizPlan/
   - Skrypty npm (version:patch, version:minor, version:major, version:build) do aktualizacji wersji
   - Integracja wersjonowania semantycznego (Semantic Versioning)
 
-- **Wersja 1.0**: Kompletny moduł zarządzania zadaniami i zasobami
-  - Integracja z MongoDB
-  - Pełne API RESTful dla zadań i zasobów
-  - Bardziej zaawansowany interfejs użytkownika
-  - Powiadomienia o terminach zadań
+- **Wersja 0.4.0**: Przygotowanie architektury do integracji z backendem
+
+  - Stworzenie warstwy usług do komunikacji z API
+  - Refaktoryzacja kodu obsługującego dane
+  - Przygotowanie struktury serwera do przyszłej integracji z MongoDB
+
+- **Wersja 0.5.0**: Podstawowe API i konfiguracja bazy danych
+
+  - Konfiguracja MongoDB i połączenia z bazą danych
+  - Implementacja podstawowych modeli danych na serwerze
+  - Stworzenie CRUD API dla zadań
+  - Obsługa autoryzacji i autentykacji użytkowników (podstawowa)
+  - Integracja z MongoDB Atlas
+
+- **Wersja 0.6.0**: Integracja frontendu z API dla zadań
+
+  - Pełna integracja modułu zadań z API
+  - Obsługa synchronizacji danych między klientem a serwerem
+  - Wsparcie dla trybu offline (przechowywanie danych lokalnie podczas braku połączenia)
+  - Mechanizmy rozwiązywania konfliktów danych
+  - Optymistyczne aktualizacje UI podczas operacji sieciowych
+
+- **Wersja 0.7.0**: API i integracja dla zasobów
+
+  - Implementacja modeli i kontrolerów dla zasobów na serwerze
+  - Integracja funkcjonalności przesyłania plików z API
+  - Obsługa pobierania i przechowywania plików na serwerze
+  - Mechanizmy kompresji i optymalizacji plików
+  - Integracja funkcjonalności zasobów w interfejsie użytkownika
+
+- **Wersja 0.8.0**: Udoskonalony interfejs użytkownika
+
+  - Przeprojektowanie interfejsu użytkownika
+  - Nowy system nawigacji i menu
+  - Poprawa dostępności i responsywności
+  - Animacje i przejścia
+  - Tryb ciemny/jasny
+
+- **Wersja 0.9.0**: System powiadomień i zarządzanie terminami
+
+  - Implementacja systemu powiadomień o terminach zadań
+  - Integracja z kalendarzem
+  - Powiadomienia przez email
+  - Dashboard z przeglądem terminów i zadań
+  - Priorytyzacja zadań
+
+- **Wersja 1.0.0**: Finalizacja i przygotowanie do produkcji
+
+  - Audyt bezpieczeństwa i wydajności
+  - Wdrożenie testów jednostkowych i integracyjnych
+  - Kompleksowa dokumentacja API
+  - Instalator/przewodnik dla nowych użytkowników
+  - Mechanizmy backupu i odtwarzania danych
 
 ### Faza II: Zarządzanie produktami
 
@@ -332,28 +380,21 @@ Funkcje zaimplementowane w tej wersji:
 
 Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dodane funkcje serwera i bazą danych MongoDB.
 
-### 🔜 Planowane w następnej wersji (1.0)
+### 🔜 Planowane w następnej wersji (0.4.0)
 
-- Integracja z bazą danych MongoDB
-- Pełne API RESTful dla zadań i zasobów
-- Udoskonalony interfejs użytkownika
-- Powiadomienia o terminach zadań
-- Ulepszone zarządzanie zasobami z kategoryzacją folderową
+- Stworzenie warstwy usług (services) w kliencie do komunikacji z API
+- Refaktoryzacja kodu do wykorzystania warstwy usług zamiast bezpośredniego localStorage
+- Implementacja wzorca repozytorium do separacji logiki dostępu do danych
+- Stworzenie abstrakcji dla źródeł danych (lokalne vs. zdalne)
+- Obsługa stanu połączenia i błędów sieciowych
 
 ### 🔜 Najbliższe plany rozwoju
 
-- **Wersja 0.3.2**: Kontrola wersji i przygotowanie do wydania
+- **Wersja 0.4.0**: Przygotowanie architektury do integracji z backendem
 
-  - Implementacja systemu kontroli wersji dla aplikacji
-  - Automatyzacja procesu wydawania nowych wersji
-  - Dokumentacja techniczna API i komponentów
-  - Testy jednostkowe i integracyjne dla kluczowych funkcji
-
-- **Wersja 1.0**: Pełna funkcjonalność i integracja z backendem
-  - Integracja z bazą danych MongoDB
-  - Pełne API RESTful dla zadań i zasobów
-  - Udoskonalony interfejs użytkownika
-  - Powiadomienia o terminach zadań
+  - Stworzenie warstwy usług do komunikacji z API
+  - Refaktoryzacja kodu obsługującego dane
+  - Przygotowanie struktury serwera do przyszłej integracji z MongoDB
 
 ## 🤝 Współpraca
 
