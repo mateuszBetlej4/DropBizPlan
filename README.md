@@ -221,75 +221,75 @@ DropBizPlan/
 
 ### Faza II: Zarządzanie produktami
 
-- **Wersja 1.1**: Podstawowe zarządzanie produktami
+- **Wersja 1.1.0**: Podstawowe zarządzanie produktami
 
   - Model danych produktów
   - Interfejs do dodawania i edycji produktów
   - Podstawowa kategoryzacja
 
-- **Wersja 1.2**: Integracja z dostawcami - podstawy
+- **Wersja 1.2.0**: Integracja z dostawcami - podstawy
 
   - Model danych dostawców
   - Połączenie produktów z dostawcami
   - Podstawowe śledzenie stanów magazynowych
 
-- **Wersja 1.3**: Rozszerzone zarządzanie produktami
+- **Wersja 1.3.0**: Rozszerzone zarządzanie produktami
 
   - Masowy import produktów
   - Zaawansowana kategoryzacja
   - Zarządzanie cenami i promocjami
 
-- **Wersja 1.5**: Kompletny moduł zarządzania produktami
+- **Wersja 1.5.0**: Kompletny moduł zarządzania produktami
   - Pełna integracja z API dostawców
   - Automatyczne aktualizacje stanów magazynowych
   - Zaawansowane zarządzanie cenami i promocjami
 
 ### Faza III: Zarządzanie klientami i zamówieniami
 
-- **Wersja 1.6**: Podstawowe zarządzanie klientami
+- **Wersja 1.6.0**: Podstawowe zarządzanie klientami
 
   - Model danych klientów
   - Interfejs do zarządzania klientami
   - Podstawowa segmentacja klientów
 
-- **Wersja 1.7**: Podstawowe zarządzanie zamówieniami
+- **Wersja 1.7.0**: Podstawowe zarządzanie zamówieniami
 
   - Model danych zamówień
   - Śledzenie statusów zamówień
   - Podstawowa historia zamówień
 
-- **Wersja 1.8**: Rozszerzone funkcje klientów i zamówień
+- **Wersja 1.8.0**: Rozszerzone funkcje klientów i zamówień
 
   - Komunikacja z klientami
   - Zarządzanie zwrotami i reklamacjami
   - Szczegółowa historia zamówień
 
-- **Wersja 2.0**: Kompletny moduł zarządzania klientami i zamówieniami
+- **Wersja 2.0.0**: Kompletny moduł zarządzania klientami i zamówieniami
   - Zaawansowana segmentacja klientów
   - Automatyczne powiadomienia o statusie zamówień
   - Pełne funkcje zarządzania zwrotami i reklamacjami
 
 ### Faza IV: Analityka i zaawansowane funkcje
 
-- **Wersja 2.1**: Podstawowe narzędzia analityczne
+- **Wersja 2.1.0**: Podstawowe narzędzia analityczne
 
   - Dashboardy sprzedażowe
   - Podstawowe raporty
   - Analiza bestsellerów
 
-- **Wersja 2.2**: Analiza finansowa
+- **Wersja 2.2.0**: Analiza finansowa
 
   - Kalkulator marż i zysków
   - Śledzenie budżetu
   - Podstawowe prognozy finansowe
 
-- **Wersja 2.3**: Analiza konkurencji
+- **Wersja 2.3.0**: Analiza konkurencji
 
   - Monitorowanie cen konkurencji
   - Analiza ofert konkurencyjnych
   - Identyfikacja nisz rynkowych
 
-- **Wersja 2.5**: Rozbudowane narzędzia analityczne
+- **Wersja 2.5.0**: Rozbudowane narzędzia analityczne
   - Zaawansowane prognozy finansowe
   - Analiza trendów i sezonowości
   - Pełne wskaźniki efektywności biznesu
@@ -297,31 +297,54 @@ DropBizPlan/
 
 ### Faza V: Integracje i optymalizacja
 
-- **Wersja 2.6**: Integracja z platformami e-commerce - podstawy
+- **Wersja 2.6.0**: Integracja z platformami e-commerce - podstawy
 
   - Integracja z WooCommerce/Shopify
   - Synchronizacja produktów
   - Podstawowa synchronizacja zamówień
 
-- **Wersja 2.7**: Integracja z systemami płatności
+- **Wersja 2.7.0**: Integracja z systemami płatności
 
   - Podłączenie popularnych systemów płatności
   - Śledzenie płatności
   - Podstawowa automatyzacja finansowa
 
-- **Wersja 2.8**: Rozszerzone integracje
+- **Wersja 2.8.0**: Rozszerzone integracje
 
   - Integracja z większą liczbą platform e-commerce
   - Zaawansowana synchronizacja produktów i zamówień
   - Automatyzacja procesów
 
-- **Wersja 3.0**: Pełna optymalizacja i integracja
+- **Wersja 3.0.0**: Pełna optymalizacja i integracja
   - Pełna automatyzacja procesów biznesowych
   - Optymalizacja wydajności
   - Zaawansowane integracje z zewnętrznymi systemami
   - API dla zewnętrznych deweloperów
 
 ## 📄 Aktualny status rozwoju
+
+### ✅ Wersja 0.1 (Ukończona)
+
+Funkcje zaimplementowane w tej wersji:
+
+- ✅ Konfiguracja projektu i środowiska:
+  - Inicjalizacja projektu React/TypeScript
+  - Konfiguracja Node.js/Express dla backendu
+  - Implementacja podstawowej struktury aplikacji
+  - Integracja Material UI jako biblioteki komponentów
+  - Konfiguracja środowiska deweloperskiego (ESLint, Prettier)
+  - Podstawowa architektura folderów i plików
+
+### ✅ Wersja 0.2 (Ukończona)
+
+Funkcje zaimplementowane w tej wersji:
+
+- ✅ Podstawowy system zarządzania zadaniami:
+  - Stworzenie modułu przechowywania danych w localStorage
+  - Implementacja interfejsu dla listy zadań
+  - Dodawanie i usuwanie zadań
+  - Zmiana statusu zadań (wykonane/niewykonane)
+  - Podstawowe komponenty UI (TaskList, TaskItem)
 
 ### ✅ Wersja 0.3 (Ukończona)
 

@@ -5,7 +5,7 @@ Wszystkie istotne zmiany w projekcie będą dokumentowane w tym pliku.
 Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.2] - 2023-08-18
+## [0.3.2] - 2025-03-29
 
 ### Dodano
 
@@ -20,7 +20,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Zaktualizowano stopkę, dodając informację o wersji aplikacji
 - Zaktualizowano tekst na stronie głównej, dodając informację o wersji
 
-## [0.3.1] - 2023-08-15
+## [0.3.1] - 2025-03-28
 
 ### Dodano
 
@@ -37,7 +37,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Usunięcie martwego kodu i nieużywanych importów
 - Naprawa ostrzeżeń dotyczących przestarzałych opcji deweloperskich
 
-## [0.3.0] - 2023-08-10
+## [0.3.0] - 2025-03-28
 
 ### Dodano
 
@@ -47,7 +47,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Podgląd plików (zdjęcia, dokumenty PDF)
 - Wyszukiwanie i filtrowanie zasobów
 
-## [0.2.0] - 2023-08-05
+## [0.2.0] - 2025-03-28
 
 ### Dodano
 
@@ -57,7 +57,7 @@ a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
 - Usuwanie zadań
 - Filtrowanie i sortowanie zadań
 
-## [0.1.0] - 2023-08-01
+## [0.1.0] - 2025-03-28
 
 ### Dodano
 
