@@ -5,10 +5,10 @@
 
 export const VERSION = {
   major: 0,
-  minor: 3,
-  patch: 2,
+  minor: 4,
+  patch: 0,
   label: 'alpha',
-  build: 2,
+  build: 1,
   date: new Date().toISOString().slice(0, 10),
   getVersion: function() {
     return `${this.major}.${this.minor}.${this.patch}${this.label ? `-${this.label}` : ''}+${this.build}`;

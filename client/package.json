@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -29,7 +29,11 @@
     "start": "cross-env DISABLE_ESLINT_PLUGIN=true NODE_OPTIONS=--no-deprecation craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "version:patch": "node ../scripts/update-version.js patch",
+    "version:minor": "node ../scripts/update-version.js minor",
+    "version:major": "node ../scripts/update-version.js major",
+    "version:build": "node ../scripts/update-version.js build"
   },
   "eslintConfig": {
     "extends": [

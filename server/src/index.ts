@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import taskRoutes from './routes/taskRoutes';
 
 // Konfiguracja zmiennych środowiskowych
 dotenv.config();
@@ -18,6 +19,14 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req: Request, res: Response) => {
   res.send('DropBizPlan API działa poprawnie!');
 });
+
+// Endpoint zdrowia dla sprawdzania połączenia
+app.get('/api/health', (req: Request, res: Response) => {
+  res.status(200).json({ status: 'OK', message: 'API działa poprawnie' });
+});
+
+// Trasy API
+app.use('/api/tasks', taskRoutes);
 
 // Połączenie z bazą danych (zakomentowane do przyszłego użycia)
 /*

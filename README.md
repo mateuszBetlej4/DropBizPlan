@@ -276,7 +276,7 @@ DropBizPlan/
   - Skrypty npm (version:patch, version:minor, version:major, version:build) do aktualizacji wersji
   - Integracja wersjonowania semantycznego (Semantic Versioning)
 
-- **Wersja 0.4.0**: Przygotowanie architektury do integracji z backendem
+- **Wersja 0.4.0**: Przygotowanie architektury do integracji z backendem ✅
 
   - Stworzenie warstwy usług do komunikacji z API
   - Refaktoryzacja kodu obsługującego dane
@@ -432,109 +432,30 @@ DropBizPlan/
   - Zaawansowane integracje z zewnętrznymi systemami
   - API dla zewnętrznych deweloperów
 
-## 📄 Aktualny status rozwoju
+### 🔜 Planowane w następnej wersji (0.5.0)
 
-### ✅ Wersja 0.1 (Ukończona)
-
-Funkcje zaimplementowane w tej wersji:
-
-- ✅ Konfiguracja projektu i środowiska:
-  - Inicjalizacja projektu React/TypeScript
-  - Konfiguracja Node.js/Express dla backendu
-  - Implementacja podstawowej struktury aplikacji
-  - Integracja Material UI jako biblioteki komponentów
-  - Konfiguracja środowiska deweloperskiego (ESLint, Prettier)
-  - Podstawowa architektura folderów i plików
-
-### ✅ Wersja 0.2 (Ukończona)
-
-Funkcje zaimplementowane w tej wersji:
-
-- ✅ Podstawowy system zarządzania zadaniami:
-  - Stworzenie modułu przechowywania danych w localStorage
-  - Implementacja interfejsu dla listy zadań
-  - Dodawanie i usuwanie zadań
-  - Zmiana statusu zadań (wykonane/niewykonane)
-  - Podstawowe komponenty UI (TaskList, TaskItem)
-
-### ✅ Wersja 0.3 (Ukończona)
-
-Funkcje zaimplementowane w tej wersji:
-
-- ✅ Podstawowy system zarządzania zadaniami
-  - Dodawanie zadań z tytułem, opisem i terminem
-  - Oznaczanie zadań jako ukończone
-  - Usuwanie zadań
-  - Filtrowanie i sortowanie zadań
-- ✅ Podstawowy system zarządzania zasobami
-  - Przesyłanie plików (dokumenty, obrazy, inne)
-  - Katalogowanie zasobów z metadanymi i tagami
-  - Podgląd plików (zdjęcia, dokumenty PDF)
-  - Pobieranie zasobów
-  - Wyszukiwanie i filtrowanie zasobów
-
-### ✅ Wersja 0.3.1 (Ukończona)
-
-Funkcje zaimplementowane w tej wersji:
-
-- ✅ Optymalizacja wydajności aplikacji:
-  - Implementacja React.memo dla komponentów
-  - Wykorzystanie useCallback dla funkcji obsługi zdarzeń
-  - Zastosowanie useMemo dla kosztownych obliczeń
-- ✅ Naprawa problemów z dostępnością:
-  - Rozwiązanie problemów z aria-hidden dla elementów z fokusem
-  - Korekta struktury nagłówków HTML dla lepszego wsparcia czytników ekranu
-  - Poprawa nawigacji klawiaturowej
-- ✅ Usunięcie wszystkich ostrzeżeń kompilatora:
-  - Naprawa nieużywanych importów
-  - Usunięcie martwego kodu
-  - Poprawki typów TypeScript
-  - Rozwiązanie problemów z pluginem ESLint poprzez konfigurację CRACO
-- ✅ Rozwiązanie problemów z konfiguracją:
-  - Implementacja CRACO do bezpiecznego nadpisywania konfiguracji webpack
-  - Dodanie skryptu `dev-win` z flagą `--no-deprecation` do wyciszenia ostrzeżeń webpack-dev-server
-  - Konfiguracja zmiennej środowiskowej `DISABLE_ESLINT_PLUGIN` do wyłączania sprawdzania ESLint podczas developmentu
-  - Całkowite wyłączenie ESLint w konfiguracji CRACO dla środowiska deweloperskiego
-  - Dodanie pliku .env.development z ustawieniami deweloperskimi
-  - Wyciszenie ostrzeżeń deprecation dla Node.js poprzez bezpośrednie użycie flagi `--no-deprecation`
-  - Optymalizacja skryptów npm dla lepszej kompatybilności międzyplatformowej
-  - Naprawa ostrzeżeń dotyczących przestarzałych opcji deweloperskich
-
-### ✅ Wersja 0.3.2 (Ukończona)
-
-Funkcje zaimplementowane w tej wersji:
-
-- ✅ Wizualna kontrola wersji i automatyzacja:
-  - Komponent wyświetlający aktualną wersję aplikacji w interfejsie (stopka i strona główna)
-  - Plik version.ts do centralnego zarządzania informacjami o wersji
-  - Plik CHANGELOG.md do śledzenia zmian między wersjami
-  - Konfiguracja GitHub Actions do automatycznej aktualizacji wersji przy każdym pushu
-  - Skrypty npm (version:patch, version:minor, version:major, version:build) do aktualizacji wersji
-  - Integracja wersjonowania semantycznego (Semantic Versioning)
-
-Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dodane funkcje serwera i bazą danych MongoDB.
-
-### 🔜 Planowane w następnej wersji (0.4.0)
-
-- Stworzenie warstwy usług (services) w kliencie do komunikacji z API
-- Refaktoryzacja kodu do wykorzystania warstwy usług zamiast bezpośredniego localStorage
-- Implementacja wzorca repozytorium do separacji logiki dostępu do danych
-- Stworzenie abstrakcji dla źródeł danych (lokalne vs. zdalne)
-- Obsługa stanu połączenia i błędów sieciowych
+- Implementacja podstawowego API i konfiguracja bazy danych MongoDB
+- Konfiguracja połączenia z bazą danych
+- Implementacja modeli danych na serwerze
+- Stworzenie CRUD API dla zadań i zasobów
+- Podstawowa obsługa autoryzacji i autentykacji użytkowników
+- Integracja z MongoDB Atlas
 
 ### 🔜 Najbliższe plany rozwoju
 
-- **Wersja 0.4.0**: Przygotowanie architektury do integracji z backendem
+- **Wersja 0.5.0**: Podstawowe API i konfiguracja bazy danych
 
-  - Stworzenie warstwy usług do komunikacji z API
-  - Refaktoryzacja kodu obsługującego dane
-  - Przygotowanie struktury serwera do przyszłej integracji z MongoDB
+  - Konfiguracja MongoDB i połączenia z bazą danych
+  - Implementacja podstawowych modeli danych na serwerze
+  - Stworzenie CRUD API dla zadań
+  - Obsługa autoryzacji i autentykacji użytkowników (podstawowa)
+  - Integracja z MongoDB Atlas
 
 ## 🔄 System kontroli wersji
 
 DropBizPlan wykorzystuje semantyczne wersjonowanie (Semantic Versioning) do śledzenia postępu projektu:
 
-- Format wersji: **MAJOR.MINOR.PATCH** (np. 0.3.2)
+- Format wersji: **MAJOR.MINOR.PATCH** (np. 0.4.0)
 - **MAJOR** - znaczące zmiany, które mogą wymagać migracji danych lub zmieniać API
 - **MINOR** - nowe funkcje zachowujące kompatybilność wsteczną
 - **PATCH** - poprawki błędów i drobne ulepszenia
@@ -547,10 +468,10 @@ W projekcie zaimplementowano zaawansowany system zarządzania wersjami:
 2. **Komponent VersionDisplay** - wyświetla aktualną wersję w interfejsie użytkownika (stopka, strona główna)
 3. **CHANGELOG.md** - zawiera historię zmian dla każdej wersji
 4. **Skrypty npm** do zarządzania wersjami:
-   - `version:patch` - inkrementuje wersję patch (0.3.2 → 0.3.3)
-   - `version:minor` - inkrementuje wersję minor (0.3.2 → 0.4.0)
-   - `version:major` - inkrementuje wersję major (0.3.2 → 1.0.0)
-   - `version:build` - inkrementuje numer kompilacji (0.3.2 → 0.3.2-build.1)
+   - `version:patch` - inkrementuje wersję patch (0.4.0 → 0.4.1)
+   - `version:minor` - inkrementuje wersję minor (0.4.0 → 0.5.0)
+   - `version:major` - inkrementuje wersję major (0.4.0 → 1.0.0)
+   - `version:build` - inkrementuje numer kompilacji (0.4.0 → 0.4.0-build.1)
 5. **GitHub Actions** - automatycznie aktualizuje wersję przy każdym push do głównej gałęzi
 
 ### Jak aktualizować wersje

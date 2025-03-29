@@ -7,17 +7,13 @@ import {
   Tabs, 
   Tab, 
   Divider,
-  Alert
+  Alert,
+  CircularProgress
 } from '@mui/material';
 import TaskItem from './TaskItem';
 import AddTaskForm from './AddTaskForm';
-import { 
-  Task, 
-  getAllTasks, 
-  addTask, 
-  deleteTask, 
-  toggleTaskCompletion 
-} from '../../utils/localStorage/taskStorage';
+import { Task } from '../../types/models';
+import { TaskService } from '../../services/TaskService';
 
 // Wartości dla zakładek filtrowania
 enum TaskFilter {
@@ -29,27 +25,45 @@ enum TaskFilter {
 const TaskList: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [currentFilter, setCurrentFilter] = useState<TaskFilter>(TaskFilter.ALL);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Tworzymy instancję serwisu
+  const taskService = useMemo(() => new TaskService(), []);
   
   // Funkcja ładująca zadania - zoptymalizowana przez useCallback
-  const loadTasks = useCallback(() => {
-    setTasks(getAllTasks());
-  }, []);
+  const loadTasks = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      let loadedTasks: Task[];
+      
+      if (currentFilter === TaskFilter.ALL) {
+        loadedTasks = await taskService.getAllTasks();
+      } else {
+        const onlyCompleted = currentFilter === TaskFilter.COMPLETED;
+        loadedTasks = await taskService.getFilteredTasks(onlyCompleted);
+      }
+      
+      setTasks(loadedTasks);
+    } catch (err) {
+      console.error('Błąd podczas ładowania zadań:', err);
+      setError('Nie udało się załadować zadań. Spróbuj ponownie później.');
+    } finally {
+      setLoading(false);
+    }
+  }, [taskService, currentFilter]);
   
-  // Pobieranie zadań przy montowaniu komponentu
+  // Pobieranie zadań przy montowaniu komponentu lub zmianie filtra
   useEffect(() => {
     loadTasks();
   }, [loadTasks]);
   
-  // Przetwarzanie zadań z uwzględnieniem filtrów i sortowania
-  const filteredAndSortedTasks = useMemo(() => {
+  // Przetwarzanie zadań z uwzględnieniem sortowania
+  const sortedTasks = useMemo(() => {
+    // Kopiujemy tablicę, aby nie modyfikować oryginału
     let result = [...tasks];
-    
-    // Filtrowanie zadań
-    if (currentFilter === TaskFilter.COMPLETED) {
-      result = result.filter(task => task.completed);
-    } else if (currentFilter === TaskFilter.ACTIVE) {
-      result = result.filter(task => !task.completed);
-    }
     
     // Sortowanie - najpierw nieukończone, potem według daty
     result.sort((a, b) => {
@@ -72,30 +86,38 @@ const TaskList: React.FC = () => {
     });
     
     return result;
-  }, [tasks, currentFilter]);
+  }, [tasks]);
   
   // Funkcje obsługi zadań z wykorzystaniem useCallback
-  const handleToggleComplete = useCallback((taskId: string) => {
-    const updatedTask = toggleTaskCompletion(taskId);
-    if (updatedTask) {
+  const handleToggleComplete = useCallback(async (taskId: string) => {
+    try {
+      await taskService.toggleTaskCompletion(taskId);
       loadTasks();
+    } catch (err) {
+      console.error('Błąd podczas zmiany statusu zadania:', err);
+      setError('Nie udało się zmienić statusu zadania.');
     }
-  }, [loadTasks]);
+  }, [taskService, loadTasks]);
   
-  const handleDeleteTask = useCallback((taskId: string) => {
-    const success = deleteTask(taskId);
-    if (success) {
+  const handleDeleteTask = useCallback(async (taskId: string) => {
+    try {
+      await taskService.deleteTask(taskId);
       loadTasks();
+    } catch (err) {
+      console.error('Błąd podczas usuwania zadania:', err);
+      setError('Nie udało się usunąć zadania.');
     }
-  }, [loadTasks]);
+  }, [taskService, loadTasks]);
   
-  const handleAddTask = useCallback((taskData: Omit<Task, 'id' | 'createdAt'>) => {
-    const newTask = addTask(taskData);
-    
-    if (newTask) {
+  const handleAddTask = useCallback(async (taskData: Omit<Task, 'id' | 'createdAt'>) => {
+    try {
+      await taskService.createTask(taskData);
       loadTasks();
+    } catch (err) {
+      console.error('Błąd podczas dodawania zadania:', err);
+      setError('Nie udało się dodać zadania.');
     }
-  }, [loadTasks]);
+  }, [taskService, loadTasks]);
   
   return (
     <Paper elevation={3} sx={{ p: 2 }}>
@@ -122,9 +144,19 @@ const TaskList: React.FC = () => {
       
       <Divider sx={{ mb: 2 }} />
       
-      {filteredAndSortedTasks.length > 0 ? (
+      {error && (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      )}
+      
+      {loading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'center', my: 4 }}>
+          <CircularProgress />
+        </Box>
+      ) : sortedTasks.length > 0 ? (
         <List>
-          {filteredAndSortedTasks.map(task => (
+          {sortedTasks.map(task => (
             <TaskItem
               key={task.id}
               task={task}

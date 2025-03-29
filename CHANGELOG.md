@@ -5,6 +5,26 @@ Wszystkie istotne zmiany w projekcie będą dokumentowane w tym pliku.
 Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2025-03-29
+
+### Dodano
+
+- Nowa architektura aplikacji oparta na wzorcu repozytoriów i usług
+- Abstrakcja dla źródeł danych (interfejs DataSource<T>)
+- Implementacja LocalStorageDataSource<T> do obsługi localStorage
+- Repozytoria dla zadań i zasobów
+- Warstwa usług (services) dla zadań i zasobów
+- Konfiguracja i przygotowanie pod integrację z API
+- Modele Mongoose dla zadań i zasobów
+- Kontrolery i routing na serwerze
+- Mechanizm sprawdzania statusu połączenia z API
+
+### Zmieniono
+
+- Aktualizacja komponentów do korzystania z nowej architektury
+- Dodanie obsługi stanów ładowania i błędów w interfejsie użytkownika
+- Przygotowanie serwera do integracji z MongoDB
+
 ## [0.3.2] - 2025-03-29
 
 ### Dodano

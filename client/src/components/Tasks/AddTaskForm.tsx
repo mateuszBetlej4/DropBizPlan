@@ -11,7 +11,7 @@ import { Send as SendIcon, CalendarToday } from '@mui/icons-material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { Task } from '../../utils/localStorage/taskStorage';
+import { Task } from '../../types/models';
 import { Dayjs } from 'dayjs';
 
 interface AddTaskFormProps {
