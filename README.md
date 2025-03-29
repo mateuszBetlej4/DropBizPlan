@@ -70,11 +70,35 @@ Zaprojektowany z myślą o przedsiębiorcach rozpoczynających przygodę z drops
 
 DropBizPlan to aplikacja webowa zbudowana przy użyciu:
 
-- Frontend: React.js, TypeScript, Material UI
-- Backend: Node.js, Express.js
-- Baza danych: MongoDB
-- API: RESTful API
-- Integracje: API hurtowni dropshippingowych, systemy płatności, narzędzia analityczne
+### Frontend:
+
+- **React.js** wraz z **TypeScript** dla typowania statycznego
+- **Material UI** - biblioteka komponentów UI
+- **Create React App** z konfiguracją **CRACO** do nadpisywania ustawień
+- **@mui/x-date-pickers** - zaawansowane komponenty do obsługi dat
+- **LocalStorage API** - tymczasowe przechowywanie danych (wersja 0.3.x)
+
+### Backend:
+
+- **Node.js** z **Express.js** jako framework aplikacji
+- **TypeScript** dla typowania statycznego
+- Przygotowanie pod integrację z **MongoDB**
+
+### Narzędzia deweloperskie:
+
+- **ESLint** i **Prettier** do utrzymania jakości kodu
+- **GitHub Actions** do automatycznej aktualizacji wersji
+- **Semantic Versioning** do zarządzania wersjami aplikacji
+- **CHANGELOG** do śledzenia zmian między wersjami
+
+### Przyszłe integracje:
+
+- **MongoDB** jako baza danych
+- **RESTful API** dla komunikacji frontend-backend
+- **JWT** do autoryzacji i autentykacji
+- Integracja z API dostawców dropshippingowych
+- Systemy płatności
+- Narzędzia analityczne
 
 ## 🛠️ Instalacja i uruchomienie
 
@@ -85,43 +109,130 @@ git clone https://github.com/mateuszBetlej4/DropBizPlan.git
 # Przejście do katalogu projektu
 cd DropBizPlan
 
-# Instalacja zależności
+# Instalacja zależności głównych
 npm install
 
-# Konfiguracja
-cp .env.example .env
+# Instalacja zależności klienta
+cd client
+npm install
+
+# Instalacja zależności serwera
+cd ../server
+npm install
+cd ..
+
+# Konfiguracja zmiennych środowiskowych
+cp server/.env.example server/.env
 # (Edytuj plik .env, dodając swoje klucze API i konfigurację)
 
-# Uruchomienie serwera deweloperskiego
+# Uruchomienie klienta w trybie deweloperskim
+cd client
+npm run dev-win  # Dla Windows
+# lub
+npm run dev      # Dla Linux/Mac
+
+# Uruchomienie serwera w trybie deweloperskim (w osobnym terminalu)
+cd server
 npm run dev
+
+# Budowanie wersji produkcyjnej klienta
+cd client
+npm run build
+```
+
+## 📜 Dostępne skrypty
+
+### Główne (root projektu)
+
+```bash
+# Uruchomienie ogólnej inicjalizacji projektu
+npm install
+```
+
+### Klient (katalog /client)
+
+```bash
+# Uruchomienie klienta w trybie deweloperskim (standardowo)
+npm run dev
+
+# Uruchomienie klienta w trybie deweloperskim (Windows, z wyciszeniem ostrzeżeń o przestarzałości)
+npm run dev-win
 
 # Budowanie wersji produkcyjnej
 npm run build
+
+# Uruchomienie testów
+npm test
+
+# Aktualizacja wersji patch (x.x.X)
+npm run version:patch
+
+# Aktualizacja wersji minor (x.X.x)
+npm run version:minor
+
+# Aktualizacja wersji major (X.x.x)
+npm run version:major
+
+# Aktualizacja numeru kompilacji (x.x.x-build.X)
+npm run version:build
+```
+
+### Serwer (katalog /server)
+
+```bash
+# Uruchomienie serwera w trybie deweloperskim
+npm run dev
+
+# Uruchomienie serwera w trybie produkcyjnym
+npm start
+
+# Budowanie kodu TypeScript
+npm run build
+
+# Uruchomienie testów
+npm test
 ```
 
 ## 📚 Struktura projektu
 
 ```
 DropBizPlan/
+├── assets/               # Zasoby statyczne projektu (logo itp.)
 ├── client/               # Frontend aplikacji (React)
 │   ├── public/           # Pliki statyczne
-│   └── src/              # Kod źródłowy frontendu
-│       ├── components/   # Komponenty React
-│       ├── pages/        # Strony aplikacji
-│       ├── services/     # Usługi i integracje
-│       └── utils/        # Narzędzia pomocnicze
+│   ├── src/              # Kod źródłowy frontendu
+│   │   ├── components/   # Komponenty React
+│   │   │   ├── Layout/   # Komponenty layoutu (nagłówek, stopka, menu)
+│   │   │   ├── Tasks/    # Komponenty do zarządzania zadaniami
+│   │   │   └── Resources/# Komponenty do zarządzania zasobami
+│   │   ├── utils/        # Narzędzia pomocnicze
+│   │   │   ├── api/      # Przyszła integracja z API
+│   │   │   ├── localStorage/ # Zarządzanie danymi w localStorage
+│   │   │   └── version.ts # Informacje o wersji aplikacji
+│   │   └── App.tsx       # Główny komponent aplikacji
+│   ├── .env.development  # Zmienne środowiskowe dla środowiska deweloperskiego
+│   ├── craco.config.js   # Konfiguracja CRACO do nadpisywania ustawień CRA
+│   ├── tsconfig.json     # Konfiguracja TypeScript
+│   └── package.json      # Zależności i skrypty npm dla frontendu
 ├── server/               # Backend aplikacji (Node.js)
-│   ├── controllers/      # Kontrolery API
-│   ├── models/           # Modele danych
-│   ├── routes/           # Routing API
-│   └── utils/            # Narzędzia pomocnicze
+│   ├── src/              # Kod źródłowy backendu
+│   │   ├── controllers/  # Kontrolery API
+│   │   ├── models/       # Modele danych
+│   │   ├── routes/       # Routing API
+│   │   ├── utils/        # Narzędzia pomocnicze
+│   │   └── index.ts      # Punkt wejściowy serwera
+│   ├── .env              # Zmienne środowiskowe
+│   ├── .env.example      # Przykładowe zmienne środowiskowe
+│   ├── tsconfig.json     # Konfiguracja TypeScript
+│   └── package.json      # Zależności i skrypty npm dla backendu
 ├── docs/                 # Dokumentacja
-│   ├── 01-analiza-niszy.md
-│   ├── 02-platforma-ecommerce.md
-│   ├── 03-znalezienie-dostawcy.md
-│   ├── 04-automatyzacja.md
-│   └── 05-reklama-sprzedaz.md
 ├── scripts/              # Skrypty pomocnicze
+│   └── update-version.js # Skrypt do aktualizacji wersji
+├── .github/              # Konfiguracja GitHub
+│   └── workflows/        # Konfiguracja GitHub Actions
+│       └── version-update.yml # Workflow do automatycznej aktualizacji wersji
+├── CHANGELOG.md          # Historia zmian w projekcie
+├── package.json          # Główne zależności i skrypty npm
 └── README.md             # Ten plik
 ```
 
@@ -418,6 +529,50 @@ Dane są obecnie przechowywane w localStorage. W kolejnych wersjach zostaną dod
   - Stworzenie warstwy usług do komunikacji z API
   - Refaktoryzacja kodu obsługującego dane
   - Przygotowanie struktury serwera do przyszłej integracji z MongoDB
+
+## 🔄 System kontroli wersji
+
+DropBizPlan wykorzystuje semantyczne wersjonowanie (Semantic Versioning) do śledzenia postępu projektu:
+
+- Format wersji: **MAJOR.MINOR.PATCH** (np. 0.3.2)
+- **MAJOR** - znaczące zmiany, które mogą wymagać migracji danych lub zmieniać API
+- **MINOR** - nowe funkcje zachowujące kompatybilność wsteczną
+- **PATCH** - poprawki błędów i drobne ulepszenia
+
+### Mechanizm kontroli wersji
+
+W projekcie zaimplementowano zaawansowany system zarządzania wersjami:
+
+1. **Centralny plik version.ts** - przechowuje informacje o aktualnej wersji aplikacji
+2. **Komponent VersionDisplay** - wyświetla aktualną wersję w interfejsie użytkownika (stopka, strona główna)
+3. **CHANGELOG.md** - zawiera historię zmian dla każdej wersji
+4. **Skrypty npm** do zarządzania wersjami:
+   - `version:patch` - inkrementuje wersję patch (0.3.2 → 0.3.3)
+   - `version:minor` - inkrementuje wersję minor (0.3.2 → 0.4.0)
+   - `version:major` - inkrementuje wersję major (0.3.2 → 1.0.0)
+   - `version:build` - inkrementuje numer kompilacji (0.3.2 → 0.3.2-build.1)
+5. **GitHub Actions** - automatycznie aktualizuje wersję przy każdym push do głównej gałęzi
+
+### Jak aktualizować wersje
+
+Aby zaktualizować wersję aplikacji, użyj odpowiedniego skryptu npm:
+
+```bash
+# W katalogu klienta
+cd client
+
+# Drobne poprawki (patch)
+npm run version:patch
+
+# Nowe funkcjonalności (minor)
+npm run version:minor
+
+# Znaczące zmiany (major)
+npm run version:major
+
+# Wersja pośrednia (build)
+npm run version:build
+```
 
 ## 🤝 Współpraca
 
