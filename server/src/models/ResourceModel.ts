@@ -9,6 +9,7 @@ export interface IResource extends Document {
   tags: string[];
   createdAt: Date;
   updatedAt: Date;
+  userId: mongoose.Schema.Types.ObjectId;
 }
 
 // Schema dla zasobu
@@ -43,6 +44,11 @@ const ResourceSchema: Schema = new Schema({
     type: Date,
     default: Date.now,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: [true, 'Zasób musi być przypisany do użytkownika'],
+  },
 });
 
 // Middleware do aktualizacji pola updatedAt
@@ -56,6 +62,7 @@ ResourceSchema.pre('save', function(this: IResource, next: mongoose.CallbackWith
 // Indeksy dla szybszego wyszukiwania
 ResourceSchema.index({ type: 1 });
 ResourceSchema.index({ tags: 1 });
+ResourceSchema.index({ userId: 1 });
 
 // Eksport modelu
 export default mongoose.model<IResource>('Resource', ResourceSchema); 

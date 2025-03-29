@@ -1,11 +1,11 @@
 import express from 'express';
 import {
-  getAllTasks,
-  getTaskById,
-  createTask,
-  updateTask,
-  deleteTask
-} from '../controllers/taskController';
+  getAllResources,
+  getResourceById,
+  createResource,
+  updateResource,
+  deleteResource
+} from '../controllers/resourceController';
 import { protect } from '../middleware/authMiddleware';
 
 const router = express.Router();
@@ -14,12 +14,12 @@ const router = express.Router();
 router.use(protect);
 
 router.route('/')
-  .get(getAllTasks)
-  .post(createTask);
+  .get(getAllResources)
+  .post(createResource);
 
 router.route('/:id')
-  .get(getTaskById)
-  .put(updateTask)
-  .delete(deleteTask);
+  .get(getResourceById)
+  .put(updateResource)
+  .delete(deleteResource);
 
 export default router; 

@@ -1,90 +1,90 @@
 import { Request, Response } from 'express';
-import Task, { ITask } from '../models/TaskModel';
+import Resource, { IResource } from '../models/ResourceModel';
 
 /**
- * Pobiera wszystkie zadania
+ * Pobiera wszystkie zasoby
  */
-export const getAllTasks = async (req: Request, res: Response): Promise<void> => {
+export const getAllResources = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Pobieramy tylko zadania danego użytkownika
+    // Pobieramy tylko zasoby danego użytkownika
     const userId = res.locals.user._id;
-    const tasks = await Task.find({ userId }).sort({ createdAt: -1 });
+    const resources = await Resource.find({ userId }).sort({ createdAt: -1 });
     
     res.status(200).json({
       success: true,
-      count: tasks.length,
-      data: tasks
+      count: resources.length,
+      data: resources
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Błąd serwera podczas pobierania zadań',
+      message: 'Błąd serwera podczas pobierania zasobów',
       error: (error as Error).message
     });
   }
 };
 
 /**
- * Pobiera zadanie o określonym id
+ * Pobiera zasób o określonym id
  */
-export const getTaskById = async (req: Request, res: Response): Promise<void> => {
+export const getResourceById = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = res.locals.user._id;
-    const task = await Task.findOne({ _id: req.params.id, userId });
+    const resource = await Resource.findOne({ _id: req.params.id, userId });
     
-    if (!task) {
+    if (!resource) {
       res.status(404).json({
         success: false,
-        message: 'Nie znaleziono zadania o podanym id'
+        message: 'Nie znaleziono zasobu o podanym id'
       });
       return;
     }
     
     res.status(200).json({
       success: true,
-      data: task
+      data: resource
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Błąd serwera podczas pobierania zadania',
+      message: 'Błąd serwera podczas pobierania zasobu',
       error: (error as Error).message
     });
   }
 };
 
 /**
- * Tworzy nowe zadanie
+ * Tworzy nowy zasób
  */
-export const createTask = async (req: Request, res: Response): Promise<void> => {
+export const createResource = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = res.locals.user._id;
     
-    // Dodajemy userId do danych zadania
-    const taskData = {
+    // Dodajemy userId do danych zasobu
+    const resourceData = {
       ...req.body,
       userId
     };
     
-    const task = await Task.create(taskData);
+    const resource = await Resource.create(resourceData);
     
     res.status(201).json({
       success: true,
-      data: task
+      data: resource
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: 'Nieprawidłowe dane zadania',
+      message: 'Nieprawidłowe dane zasobu',
       error: (error as Error).message
     });
   }
 };
 
 /**
- * Aktualizuje zadanie o określonym id
+ * Aktualizuje zasób o określonym id
  */
-export const updateTask = async (req: Request, res: Response): Promise<void> => {
+export const updateResource = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = res.locals.user._id;
     
@@ -93,45 +93,45 @@ export const updateTask = async (req: Request, res: Response): Promise<void> => 
       delete req.body.userId;
     }
     
-    const task = await Task.findOneAndUpdate(
+    const resource = await Resource.findOneAndUpdate(
       { _id: req.params.id, userId },
       req.body,
       { new: true, runValidators: true }
     );
     
-    if (!task) {
+    if (!resource) {
       res.status(404).json({
         success: false,
-        message: 'Nie znaleziono zadania o podanym id'
+        message: 'Nie znaleziono zasobu o podanym id'
       });
       return;
     }
     
     res.status(200).json({
       success: true,
-      data: task
+      data: resource
     });
   } catch (error) {
     res.status(400).json({
       success: false,
-      message: 'Nieprawidłowe dane zadania',
+      message: 'Nieprawidłowe dane zasobu',
       error: (error as Error).message
     });
   }
 };
 
 /**
- * Usuwa zadanie o określonym id
+ * Usuwa zasób o określonym id
  */
-export const deleteTask = async (req: Request, res: Response): Promise<void> => {
+export const deleteResource = async (req: Request, res: Response): Promise<void> => {
   try {
     const userId = res.locals.user._id;
-    const task = await Task.findOneAndDelete({ _id: req.params.id, userId });
+    const resource = await Resource.findOneAndDelete({ _id: req.params.id, userId });
     
-    if (!task) {
+    if (!resource) {
       res.status(404).json({
         success: false,
-        message: 'Nie znaleziono zadania o podanym id'
+        message: 'Nie znaleziono zasobu o podanym id'
       });
       return;
     }
@@ -143,7 +143,7 @@ export const deleteTask = async (req: Request, res: Response): Promise<void> => 
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Błąd serwera podczas usuwania zadania',
+      message: 'Błąd serwera podczas usuwania zasobu',
       error: (error as Error).message
     });
   }

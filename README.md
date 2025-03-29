@@ -2,6 +2,8 @@
 
 ![DropBizPlan Logo](./assets/logo.png)
 
+**Wersja aktualna: 0.5.0** - Podstawowe API i konfiguracja bazy danych
+
 ## 📋 O projekcie
 
 DropBizPlan to wszechstronne narzędzie do planowania i zarządzania biznesem dropshippingowym. Aplikacja umożliwia kontrolowanie wszystkich aspektów prowadzenia sklepu - od początkowej analizy niszy, przez zarządzanie dostawcami, po monitorowanie zamówień i analizę sprzedaży.
@@ -76,13 +78,22 @@ DropBizPlan to aplikacja webowa zbudowana przy użyciu:
 - **Material UI** - biblioteka komponentów UI
 - **Create React App** z konfiguracją **CRACO** do nadpisywania ustawień
 - **@mui/x-date-pickers** - zaawansowane komponenty do obsługi dat
-- **LocalStorage API** - tymczasowe przechowywanie danych (wersja 0.3.x)
+- **Architektura warstwowa**:
+  - Warstwa prezentacji (komponenty React)
+  - Warstwa usług (services) obsługująca logikę biznesową
+  - Warstwa repozytoriów do operacji na danych
+  - Abstrakcje źródeł danych (localStorage/API)
+- **Tryb hybrydowy** - obsługa zarówno pracy z API jak i w trybie offline z localStorage
 
 ### Backend:
 
 - **Node.js** z **Express.js** jako framework aplikacji
 - **TypeScript** dla typowania statycznego
-- Przygotowanie pod integrację z **MongoDB**
+- **MongoDB** jako baza danych NoSQL
+- **Mongoose** do modelowania danych i komunikacji z bazą
+- **JWT** (JSON Web Tokens) do autentykacji
+- **bcrypt** do szyfrowania haseł
+- **REST API** dla komunikacji z frontendem
 
 ### Narzędzia deweloperskie:
 
@@ -90,15 +101,15 @@ DropBizPlan to aplikacja webowa zbudowana przy użyciu:
 - **GitHub Actions** do automatycznej aktualizacji wersji
 - **Semantic Versioning** do zarządzania wersjami aplikacji
 - **CHANGELOG** do śledzenia zmian między wersjami
+- **Nodemon** do automatycznego restartu serwera podczas developmentu
+- **Concurrently** do równoległego uruchamiania klienta i serwera
 
-### Przyszłe integracje:
+### Przyszłe integracje (w planach):
 
-- **MongoDB** jako baza danych
-- **RESTful API** dla komunikacji frontend-backend
-- **JWT** do autoryzacji i autentykacji
 - Integracja z API dostawców dropshippingowych
 - Systemy płatności
 - Narzędzia analityczne
+- Integracja z platformami e-commerce (Shopper, Shopify, WooCommerce)
 
 ## 🛠️ Instalacja i uruchomienie
 
@@ -109,44 +120,87 @@ git clone https://github.com/mateuszBetlej4/DropBizPlan.git
 # Przejście do katalogu projektu
 cd DropBizPlan
 
-# Instalacja zależności głównych
-npm install
-
-# Instalacja zależności klienta
-cd client
-npm install
-
-# Instalacja zależności serwera
-cd ../server
-npm install
-cd ..
+# Instalacja wszystkich zależności (głównych, klienta i serwera)
+npm run install-all
 
 # Konfiguracja zmiennych środowiskowych
 cp server/.env.example server/.env
 # (Edytuj plik .env, dodając swoje klucze API i konfigurację)
 
-# Uruchomienie klienta w trybie deweloperskim
-cd client
-npm run dev-win  # Dla Windows
-# lub
-npm run dev      # Dla Linux/Mac
-
-# Uruchomienie serwera w trybie deweloperskim (w osobnym terminalu)
+# Inicjalizacja bazy danych z przykładowymi danymi
 cd server
-npm run dev
+npm run init-db
+cd ..
 
-# Budowanie wersji produkcyjnej klienta
-cd client
+# Uruchomienie klienta i serwera jednocześnie w trybie deweloperskim
+npm run dev
+# lub
+npm run dev-win  # Dla Windows
+
+# Budowanie wersji produkcyjnej
 npm run build
 ```
+
+## 🗄️ Konfiguracja bazy danych
+
+Projekt wykorzystuje MongoDB jako bazę danych. Możesz użyć:
+
+### Lokalna instalacja MongoDB
+
+1. Zainstaluj MongoDB Community Server ze strony [mongodb.com](https://www.mongodb.com/try/download/community)
+2. Uruchom serwer MongoDB (port domyślny: 27017)
+3. Baza danych zostanie automatycznie utworzona przy pierwszym uruchomieniu
+
+### MongoDB Atlas (chmura)
+
+1. Utwórz konto na [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Stwórz klaster i pobierz URI połączenia
+3. Wklej URI do pliku `.env` w katalogu serwera:
+   ```
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/dropbizplan
+   ```
+
+## 📋 Inicjalizacja danych testowych
+
+Projekt zawiera skrypt do inicjalizacji bazy danych przykładowymi danymi:
+
+```bash
+cd server
+npm run init-db
+```
+
+Skrypt tworzy:
+
+- Dwóch użytkowników: admin (admin@example.com / admin123) i standardowy użytkownik (user@example.com / user123)
+- Przykładowe zadania dla każdego użytkownika
+- Przykładowe zasoby (dokumenty, obrazy)
 
 ## 📜 Dostępne skrypty
 
 ### Główne (root projektu)
 
 ```bash
-# Uruchomienie ogólnej inicjalizacji projektu
-npm install
+# Instalacja wszystkich zależności (głównych, klienta i serwera)
+npm run install-all
+
+# Uruchomienie klienta i serwera jednocześnie w trybie deweloperskim
+npm run dev
+npm run dev-win  # Dla Windows
+
+# Budowanie wersji produkcyjnej (klienta i serwera)
+npm run build
+
+# Aktualizacja wersji patch (x.x.X)
+npm run version:patch
+
+# Aktualizacja wersji minor (x.X.x)
+npm run version:minor
+
+# Aktualizacja wersji major (X.x.x)
+npm run version:major
+
+# Aktualizacja numeru kompilacji (x.x.x-build.X)
+npm run version:build
 ```
 
 ### Klient (katalog /client)
@@ -189,6 +243,9 @@ npm start
 # Budowanie kodu TypeScript
 npm run build
 
+# Inicjalizacja bazy danych przykładowymi danymi
+npm run init-db
+
 # Uruchomienie testów
 npm test
 ```
@@ -201,15 +258,18 @@ DropBizPlan/
 ├── client/               # Frontend aplikacji (React)
 │   ├── public/           # Pliki statyczne
 │   ├── src/              # Kod źródłowy frontendu
+│   │   ├── api/          # Konfiguracja komunikacji z API
 │   │   ├── components/   # Komponenty React
 │   │   │   ├── Layout/   # Komponenty layoutu (nagłówek, stopka, menu)
 │   │   │   ├── Tasks/    # Komponenty do zarządzania zadaniami
 │   │   │   └── Resources/# Komponenty do zarządzania zasobami
+│   │   ├── repositories/ # Repozytoria do operacji na danych
+│   │   ├── services/     # Warstwa usług biznesowych
+│   │   ├── types/        # Definicje typów TypeScript
 │   │   ├── utils/        # Narzędzia pomocnicze
-│   │   │   ├── api/      # Przyszła integracja z API
-│   │   │   ├── localStorage/ # Zarządzanie danymi w localStorage
 │   │   │   └── version.ts # Informacje o wersji aplikacji
-│   │   └── App.tsx       # Główny komponent aplikacji
+│   │   ├── App.tsx       # Główny komponent aplikacji
+│   │   └── index.tsx     # Punkt wejściowy aplikacji
 │   ├── .env.development  # Zmienne środowiskowe dla środowiska deweloperskiego
 │   ├── craco.config.js   # Konfiguracja CRACO do nadpisywania ustawień CRA
 │   ├── tsconfig.json     # Konfiguracja TypeScript
@@ -217,9 +277,10 @@ DropBizPlan/
 ├── server/               # Backend aplikacji (Node.js)
 │   ├── src/              # Kod źródłowy backendu
 │   │   ├── controllers/  # Kontrolery API
-│   │   ├── models/       # Modele danych
-│   │   ├── routes/       # Routing API
-│   │   ├── utils/        # Narzędzia pomocnicze
+│   │   ├── middleware/   # Middleware Express (autoryzacja, walidacja)
+│   │   ├── models/       # Modele danych Mongoose
+│   │   ├── routes/       # Routing API Express
+│   │   ├── scripts/      # Skrypty pomocnicze (np. inicjalizacja bazy)
 │   │   └── index.ts      # Punkt wejściowy serwera
 │   ├── .env              # Zmienne środowiskowe
 │   ├── .env.example      # Przykładowe zmienne środowiskowe
@@ -282,13 +343,17 @@ DropBizPlan/
   - Refaktoryzacja kodu obsługującego dane
   - Przygotowanie struktury serwera do przyszłej integracji z MongoDB
 
-- **Wersja 0.5.0**: Podstawowe API i konfiguracja bazy danych
+- **Wersja 0.5.0**: Podstawowe API i konfiguracja bazy danych ✅
 
   - Konfiguracja MongoDB i połączenia z bazą danych
-  - Implementacja podstawowych modeli danych na serwerze
-  - Stworzenie CRUD API dla zadań
-  - Obsługa autoryzacji i autentykacji użytkowników (podstawowa)
-  - Integracja z MongoDB Atlas
+  - Implementacja podstawowych modeli danych na serwerze (User, Task, Resource)
+  - Stworzenie REST API dla zadań i zasobów
+  - Implementacja systemu autoryzacji i autentykacji użytkowników
+  - Obsługa rejestracji i logowania użytkowników z JWT
+  - Zabezpieczenie tras API z użyciem middleware autoryzacyjnego
+  - Skrypt inicjalizujący przykładowe dane w bazie MongoDB
+  - Implementacja trybu hybrydowego dla frontendu (obsługa API/localStorage)
+  - Architektura warstwowa po stronie klienta (serwisy, repozytoria, API)
 
 - **Wersja 0.6.0**: Integracja frontendu z API dla zadań
 
@@ -300,7 +365,6 @@ DropBizPlan/
 
 - **Wersja 0.7.0**: API i integracja dla zasobów
 
-  - Implementacja modeli i kontrolerów dla zasobów na serwerze
   - Integracja funkcjonalności przesyłania plików z API
   - Obsługa pobierania i przechowywania plików na serwerze
   - Mechanizmy kompresji i optymalizacji plików
@@ -432,30 +496,22 @@ DropBizPlan/
   - Zaawansowane integracje z zewnętrznymi systemami
   - API dla zewnętrznych deweloperów
 
-### 🔜 Planowane w następnej wersji (0.5.0)
+### 🔜 Planowane w następnej wersji (0.6.0)
 
-- Implementacja podstawowego API i konfiguracja bazy danych MongoDB
-- Konfiguracja połączenia z bazą danych
-- Implementacja modeli danych na serwerze
-- Stworzenie CRUD API dla zadań i zasobów
-- Podstawowa obsługa autoryzacji i autentykacji użytkowników
-- Integracja z MongoDB Atlas
-
-### 🔜 Najbliższe plany rozwoju
-
-- **Wersja 0.5.0**: Podstawowe API i konfiguracja bazy danych
-
-  - Konfiguracja MongoDB i połączenia z bazą danych
-  - Implementacja podstawowych modeli danych na serwerze
-  - Stworzenie CRUD API dla zadań
-  - Obsługa autoryzacji i autentykacji użytkowników (podstawowa)
-  - Integracja z MongoDB Atlas
+- Pełna integracja modułu zadań z API
+- Implementacja interfejsu do zarządzania zadaniami z wykorzystaniem backendu
+- Obsługa synchronizacji danych między klientem a serwerem
+- Wsparcie dla trybu offline (przechowywanie danych lokalnie podczas braku połączenia)
+- Mechanizmy rozwiązywania konfliktów danych
+- Paginacja i filtrowanie zadań na froncie i backendzie
+- Implementacja logiki priorytetyzacji zadań
+- Rozszerzenie modelu zadań o dodatkowe pola (tagi, zasoby, komentarze)
 
 ## 🔄 System kontroli wersji
 
 DropBizPlan wykorzystuje semantyczne wersjonowanie (Semantic Versioning) do śledzenia postępu projektu:
 
-- Format wersji: **MAJOR.MINOR.PATCH** (np. 0.4.0)
+- Format wersji: **MAJOR.MINOR.PATCH** (np. 0.5.0)
 - **MAJOR** - znaczące zmiany, które mogą wymagać migracji danych lub zmieniać API
 - **MINOR** - nowe funkcje zachowujące kompatybilność wsteczną
 - **PATCH** - poprawki błędów i drobne ulepszenia
@@ -468,10 +524,10 @@ W projekcie zaimplementowano zaawansowany system zarządzania wersjami:
 2. **Komponent VersionDisplay** - wyświetla aktualną wersję w interfejsie użytkownika (stopka, strona główna)
 3. **CHANGELOG.md** - zawiera historię zmian dla każdej wersji
 4. **Skrypty npm** do zarządzania wersjami:
-   - `version:patch` - inkrementuje wersję patch (0.4.0 → 0.4.1)
-   - `version:minor` - inkrementuje wersję minor (0.4.0 → 0.5.0)
-   - `version:major` - inkrementuje wersję major (0.4.0 → 1.0.0)
-   - `version:build` - inkrementuje numer kompilacji (0.4.0 → 0.4.0-build.1)
+   - `version:patch` - inkrementuje wersję patch (0.5.0 → 0.5.1)
+   - `version:minor` - inkrementuje wersję minor (0.5.0 → 0.6.0)
+   - `version:major` - inkrementuje wersję major (0.5.0 → 1.0.0)
+   - `version:build` - inkrementuje numer kompilacji (0.5.0 → 0.5.0-build.1)
 5. **GitHub Actions** - automatycznie aktualizuje wersję przy każdym push do głównej gałęzi
 
 ### Jak aktualizować wersje

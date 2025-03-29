@@ -5,6 +5,25 @@ Wszystkie istotne zmiany w projekcie będą dokumentowane w tym pliku.
 Format oparty jest na [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 a projekt przestrzega [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-03-29
+
+### Dodano
+
+- Pełna integracja z bazą danych MongoDB
+- Model użytkownika z obsługą autentykacji
+- System rejestracji i logowania użytkowników
+- Autoryzacja API z wykorzystaniem tokenów JWT
+- Kontrolery i trasy API dla zadań
+- Kontrolery i trasy API dla zasobów
+- Middleware ochrony tras wymagających autoryzacji
+- System ról i uprawnień (user, admin)
+
+### Zmieniono
+
+- Przejście z lokalnego przechowywania danych na bazę MongoDB
+- Implementacja pełnego CRUD API dla zadań i zasobów
+- Dodanie autoryzacji do istniejących tras API
+
 ## [0.4.0] - 2025-03-29
 
 ### Dodano

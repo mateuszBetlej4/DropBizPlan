@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import taskRoutes from './routes/taskRoutes';
+import resourceRoutes from './routes/resourceRoutes';
+import authRoutes from './routes/authRoutes';
 
 // Konfiguracja zmiennych środowiskowych
 dotenv.config();
@@ -27,9 +29,10 @@ app.get('/api/health', (req: Request, res: Response) => {
 
 // Trasy API
 app.use('/api/tasks', taskRoutes);
+app.use('/api/resources', resourceRoutes);
+app.use('/api/auth', authRoutes);
 
-// Połączenie z bazą danych (zakomentowane do przyszłego użycia)
-/*
+// Połączenie z bazą danych
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI as string);
@@ -40,7 +43,6 @@ const connectDB = async () => {
   }
 };
 connectDB();
-*/
 
 // Uruchomienie serwera
 app.listen(port, () => {
